@@ -1,0 +1,14 @@
+@media (max-width: 600px) {
+    .row {
+        display: flex;
+        overflow: hidden;
+    }
+    .imagen-footer {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+    }
+    .img-footer {
+        width: 40%;
+    }
+}

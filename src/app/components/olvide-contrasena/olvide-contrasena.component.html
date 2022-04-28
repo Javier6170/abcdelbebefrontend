@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-6">
+        <div class="img-login">
+            <img class="rounded mx-auto d-block img-fluid" src="../../../assets/images/right-img.jpeg" alt="">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="m-5">
+            <div class="left text-center">
+                <h2 class="title">Recuperar Contraseña</h2>
+            </div>
+            <form (ngSubmit)="onOlvidePassword()" #formTemplate="ngForm">
+                <div class="mb-3">
+                    <label for="mailTo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="mailTo" name="mailTo" [(ngModel)]="mailTo" required>
+                    <div class="d-grid gap-2 ">
+                        <button type="submit" class="btn">Recuperar contraseña</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

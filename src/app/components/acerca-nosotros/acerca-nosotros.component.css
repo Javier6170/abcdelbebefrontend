@@ -1,0 +1,205 @@
+.svg-hero {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.cards-contenedor {
+    padding: 50px;
+}
+
+.titulo {
+    font-weight: 300;
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #fd85db;
+}
+
+.content-cards {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 30%;
+    text-align: center;
+    height: 300px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
+    transform: scale(1);
+    transition: transform 0.6s;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.card i {
+    margin: 30px 0 20px 0;
+    color: #fd85db;
+    font-size: 50px;
+}
+
+.card p {
+    font-weight: 300;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+hr {
+    border: 5px solid #4bceb4;
+    border-radius: 200px /8px;
+    height: 0px;
+    text-align: center;
+}
+
+.contenedor,
+.wave-contenedor {
+    width: 90%;
+    max-width: 1000px;
+    overflow: hidden;
+    margin: auto;
+    padding: 0 0 80px 0;
+}
+
+.contenedor {
+    padding: 80px 0;
+}
+
+.titulo {
+    font-weight: 300;
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.titulo.left {
+    text-align: left;
+}
+
+.website {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.website img {
+    width: 40%;
+}
+
+.website img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.6s;
+}
+
+.website .contenedor-textos-main {
+    width: 40%;
+}
+
+.cta1 {
+    display: inline-block;
+    text-decoration: none;
+    background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: white;
+}
+
+.cta1:hover {
+    color: black;
+}
+
+.video-div {
+    text-align: center;
+}
+
+.video-i {
+    width: 766px;
+    height: 431px;
+}
+
+@media (max-width: 600px) {
+    .card i {
+        margin: 30px 0 10px 0;
+        color: #fd85db;
+        font-size: 40px;
+    }
+    .card p {
+        font-weight: 300;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .card {
+        width: 100%;
+        text-align: center;
+        height: 300px;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
+        transform: scale(1);
+        transition: transform 0.6s;
+        overflow: hidden;
+    }
+    .card:hover {
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+        transform: scale(1.03);
+        cursor: pointer;
+    }
+    .contenedor,
+    .wave-contenedor {
+        width: 100%;
+        max-width: 1000px;
+        overflow: hidden;
+        margin: auto;
+        padding: 0 0 80px 0;
+        text-align: center;
+    }
+    .contenedor {
+        padding: 80px 0;
+        text-align: center;
+    }
+    .titulo {
+        font-weight: 300;
+        font-size: 35px;
+        margin-bottom: 30px;
+    }
+    .titulo.left {
+        text-align: center;
+    }
+    .website {
+        margin-top: 10px;
+        display: inline-block;
+        text-align: center;
+    }
+    .website img {
+        text-align: center;
+        width: 60%;
+    }
+    .website img:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        transition: transform 0.6s;
+    }
+    .website .contenedor-textos-main {
+        width: 100%;
+    }
+    .video-div {
+        text-align: center;
+    }
+    .video-i {
+        width: 250px;
+        height: 200px;
+    }
+    .titulo {
+        font-weight: 300;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}

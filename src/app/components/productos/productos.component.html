@@ -1,0 +1,20 @@
+<div class="container-fluid mb-5">
+    <header>
+        <nav class="navbar">
+            <form class="d-flex">
+                <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn" type="submit">Search</button>
+            </form>
+        </nav>
+    </header>
+    <div class="content-cards">
+        <article class="card" *ngFor="let producto of listProductos">
+            <img [src]="producto.retreieve_image">
+            <h3>{{producto.nombre}}</h3>
+            <p>{{producto.descripcion}}</p>
+            <p>Precio: <strong>${{producto.precio}}</strong></p>
+            <a href="#"> <i class="fas fa-shopping-cart"></i>Comprar</a>
+        </article>
+    </div>
+</div>
+<app-footer></app-footer>

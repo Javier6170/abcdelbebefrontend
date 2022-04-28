@@ -1,0 +1,27 @@
+<h1 class="text-center mb-4">Editar información</h1>
+<hr>
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-5">
+            <div class="form-div mb-3">
+                <label for="nombre" class="form-label ms-3"><strong>Nombre:</strong></label>
+                <input type="text" class="form-control ms-3" id="nombre" name="nombre" [(ngModel)]="usuario.nombre" disabled>
+                <label for="telefono" class="form-label ms-3"><strong>Telefono:</strong></label>
+                <input type="text" class="form-control ms-3" id="telefono" name="telefono" [(ngModel)]="usuario.telefono" disabled>
+                <label for="correo" class="form-label ms-3"><strong>Correo:</strong></label>
+                <input type="text" class="form-control ms-3" id="correo" name="correo" [(ngModel)]="usuario.correo" disabled>
+            </div>
+        </div>
+        <div class="col-7 mt-3">
+            <form action="">
+                <div class="image-form mb-3">
+                    <div *ngIf="isImagenSubida == false">
+                        <label for="firstImg" class="form-label me-3"><strong>Imagen</strong></label>
+                        <input type="file" [class.is-valid]="imagen.valid" class="form-control" id="imagen" accept="image/*" name="imagen" id="imagen" required ngModel #imagen="ngModel" (change)="onFileChanged($event)">
+                    </div>
+                    <div class="img-preview" id="img-preview"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>x

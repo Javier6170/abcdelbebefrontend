@@ -1,0 +1,43 @@
+.title {
+    text-align: center;
+    color: #337c8f;
+    font-weight: bold;
+    font-family: miFuente;
+}
+
+.container-registro {
+    margin-left: 40px;
+}
+
+.img-registro {
+    width: 70%;
+    margin: 50px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background-image: linear-gradient(120deg, #fda1a1 0%, #fbc2c2 100%);
+    padding: 10px 20px;
+    border-radius: 22px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    display: inline-block;
+    text-decoration: none;
+    background-image: linear-gradient(120deg, #fc8a8a 0%, #ff9898 100%);
+    padding: 10px 20px;
+    border-radius: 22px;
+    color: rgb(61, 23, 23);
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.form-label {
+    color: #c26c6c;
+}

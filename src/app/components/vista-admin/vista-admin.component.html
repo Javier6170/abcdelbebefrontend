@@ -1,0 +1,176 @@
+<div class="row">
+    <div class="col-sm-auto bg-light sticky-top">
+        <div class="d-flex flex-column p-2 flex-shrink-0 text-white bg-pink" style="width: 200px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <span class="fs-4 ms-2">Administrar</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                    <button href="#" class="nav-link text-white" #editarInfo>
+                        <i class="fa-solid fa-user"></i> Editar Informacion
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button (click)="volver();" class="nav-link text-white" #inicio id="inicio">
+                        <i class="fa-solid fa-house"></i> Inicio
+                    </button>
+                </li>
+                <li>
+                    <button (click)="listaProductos();" class="nav-link text-white" #productos id="productos">
+                        <i class="fa-solid fa-chart-line"></i> Productos
+                    </button>
+                </li>
+                <li>
+                    <button href="#" class="nav-link text-white" #proveedorea>
+                        <i class="fa-solid fa-coins"></i> Proveedores
+                    </button>
+                </li>
+                <li>
+                    <button href="#" class="nav-link text-white" #cliente>
+                        <i class="fa-solid fa-comments-dollar"></i> Clientes
+                    </button>
+                </li>
+            </ul>
+            <div class="separacion"></div>
+            <hr>
+            <div class="cont text-center">
+                <strong> <i class="fa-solid fa-receipt"></i> ABC del bebe</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm m-1">
+        <div class="container-fluid mt-3" *ngIf="isInicio;">
+            <div class="m-5">
+            </div>
+            <h1 class="text-center title">- Inicio -</h1>
+            <div class="text-center mt-4">
+                <div class="row">
+                    <div class="col-4">
+                        <ul>
+                            <li><button class="btn" (click)="anadirProducto();"><i class="fa-solid fa-plus"></i> Añadir
+                                    Producto</button></li>
+                            <li><button class="btn"><i class="fa-solid fa-chart-line"></i> Estadisticas
+                                    producto</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-4">
+                        <ul>
+                            <li><button class="btn"><i class="fa-solid fa-plus"></i> Añadir Proveedor</button></li>
+                            <li><button class="btn"><i class="fa-solid fa-arrow-trend-down"></i> Descuento
+                                    Proveedores</button></li>
+                            <li><button class="btn"><i class="fa-solid fa-chart-pie"></i> Producto Mas vendido</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-4">
+                        <ul>
+                            <li><button class="btn" (click)="anadirCategoria();"><i class="fa-solid fa-plus"></i> Añadir
+                                    Categoria</button></li>
+                            <li><button class="btn"><i class="fa-solid fa-arrow-rotate-left"></i> Categoria Menos
+                                    vendida</button></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="text-center m-4">
+                <div class="row">
+                    <div class="col-4"><button class="btn"><i class="fa-solid fa-building-user"></i> Ingresos
+                            Mensuales</button></div>
+                    <div class="col-4"><button class="btn"><i class="fa-solid fa-house-chimney-medical"></i> Egresos
+                            Mensuales</button></div>
+                    <div class="col-4"><button class="btn"><i class="fa-solid fa-person-chalkboard"></i>
+                            Planeacion</button></div>
+                </div>
+            </div>
+        </div>
+        <!-- Registar Registrar Producto-->
+        <div class="container-fluid mt-4" *ngIf="isAnadirProducto;">
+            <h2 class="title">Registrar Nuevo Producto</h2>
+            <form (ngSubmit)="onRegistroProduct(formTemplate)" #formTemplate="ngForm">
+                <div class="mb-3">
+                    <div class="mb-3" *ngIf="isImagenSubida == false">
+                        <label for="imagen" class="form-label"><strong><i class="fa-solid fa-cloud-arrow-up"></i>
+                                Imagen</strong></label>
+                        <input type="file" [class.is-valid]="imagen.valid" class="form-control" id="imagen" accept="image/*" name="imagen" id="imagen" required ngModel #imagen="ngModel" (change)="onFileChanged($event)">
+                        <input type="hidden" disabled [class.is-invalid]="nombre_imagen.invalid && nombre_imagen.touched" [class.is-valid]="nombre_imagen.valid" class="form-control" id="nombre_imagen" name="nombre_imagen" [(ngModel)]="producto.nombre_imagen" required ngModel
+                            #nombre_imagen="ngModel">
+                        <button type="button" class="btn" (click)="subirImagen();">Cargar</button>
+                        <div class="mensaje">
+                            {{message}}
+                        </div>
+                    </div>
+                </div>
+                <div class="cont" *ngIf="isImagenSubida == true">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label"><strong>Nombre Producto</strong></label>
+                        <input type="text" [class.is-invalid]="nombre.invalid && nombre.touched" [class.is-valid]="nombre.valid" class="form-control" id="nombre" name="nombre" [(ngModel)]="producto.nombre" required ngModel #nombre="ngModel">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label"><strong>Descripcion</strong></label>
+                        <input type="text" [class.is-invalid]="descripcion.invalid && descripcion.touched" [class.is-valid]="descripcion.valid" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="producto.descripcion" required ngModel #descripcion="ngModel">
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label"><strong>Precio</strong></label>
+                        <input type="number" [class.is-invalid]="precio.invalid && precio.touched" [class.is-valid]="precio.valid" class="form-control" id="precio" name="precio" [(ngModel)]="producto.precio" required ngModel #precio="ngModel">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label"><strong>Cantidad</strong></label>
+                        <input type="number" [class.is-invalid]="cantidad.invalid && cantidad.touched" [class.is-valid]="cantidad.valid" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="producto.cantidad" required ngModel #cantidad="ngModel">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button *ngIf="isImagenSubida == true" type="submit" class="btn">Registrar</button>
+                        <button class="btn" (click)="volver();">Volver</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Registar Registrar categoria-->
+        <div class="container-fluid mt-4" *ngIf="isAnadirCategoria;">
+            <h2 class="title">Registrar Nueva Categoria</h2>
+            <form (ngSubmit)="onRegistroProduct(formTemplate)" #formTemplate="ngForm">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label"><strong>Nombre Categoria</strong></label>
+                    <input type="text" [class.is-invalid]="nombre.invalid && nombre.touched" [class.is-valid]="nombre.valid" class="form-control" id="nombre" name="nombre" [(ngModel)]="producto.nombre" required ngModel #nombre="ngModel">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn">Registrar</button>
+                    <button class="btn" (click)="volver();">Volver</button>
+                </div>
+            </form>
+        </div>
+        <div class="container-fluid mt-4" *ngIf="isListaProductos;">
+            <h2 class="title">Lista De productos</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of listProductos">
+                        <td>{{producto.id}}</td>
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.descripcion}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td>{{producto.nombre_imagen}}</td>
+                        <td>{{producto.cantidad}}</td>
+                        <td><button class="btn">Editar</button></td>
+                        <td><button class="btn">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-grid gap-2">
+                <button class="btn" (click)="volver();">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>

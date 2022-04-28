@@ -1,0 +1,200 @@
+.content-cards {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 30%;
+    height: 450px;
+    box-shadow: 0 0 4px 0 rgba(93, 204, 255, 0.5);
+    transform: scale(1);
+    transition: transform 0.6s;
+    margin-top: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 0 6px 0 rgba(73, 79, 255, 0.5);
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.card img {
+    margin: auto;
+    width: 50%;
+}
+
+.card h3 {
+    font-weight: bold;
+    margin: auto;
+}
+
+.card p {
+    font-weight: 300;
+    font-size: 25px;
+    margin-bottom: 5px;
+    margin: auto;
+}
+
+.card a {
+    margin: auto;
+    text-decoration: none;
+    color: rgb(106, 53, 88);
+    padding: 10px 12px;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    border-radius: 8px;
+}
+
+.card i {
+    color: black;
+    margin-right: 10px;
+}
+
+.imagenes-logo-div {
+    display: flex;
+    width: 12%;
+    padding: 15px;
+    float: left;
+}
+
+header {
+    width: 100%;
+    background: url("../../../assets/images/fondo-header-productos.jpg") rgba(205, 205, 255, 0.426);
+    padding: 0px;
+    text-align: center;
+}
+
+.logo-hero {
+    width: 10%;
+}
+
+.video-i {
+    width: 766px;
+    height: 431px;
+}
+
+.imagenes-logo-div {
+    display: flex;
+    width: 12%;
+    padding: 15px;
+    float: left;
+}
+
+.imagen-logo-img {
+    width: 100%;
+}
+
+.textos-hero-li {
+    list-style-type: none;
+    display: inline;
+    padding-right: 15px;
+}
+
+.textos-hero-a {
+    text-decoration: none;
+    color: rgb(86, 106, 174);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.textos-hero-a:hover {
+    font-size: 18px;
+    color: rgb(2, 2, 162);
+}
+
+.TextosGrandes {
+    float: left;
+    width: 100%;
+    margin-top: 90px;
+    size: 50px;
+    color: rgb(86, 106, 174);
+    font-family: miFuente;
+}
+
+.texto-1 {
+    width: 40%;
+    margin-left: 40px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background-image: linear-gradient(120deg, #fda1a1 0%, #fbc2c2 100%);
+    padding: 10px 15px;
+    border-radius: 22px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+.btn:hover {
+    display: inline-block;
+    text-decoration: none;
+    background-image: linear-gradient(120deg, #fc8a8a 0%, #ff9898 100%);
+    padding: 10px 20px;
+    border-radius: 22px;
+    color: rgb(61, 23, 23);
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .card img {
+        margin: auto;
+        width: 50%;
+    }
+    .card i {
+        margin: 30px 0 10px 0;
+        color: #fd85db;
+        font-size: 40px;
+    }
+    .card p {
+        font-weight: 300;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .fas {
+        display: none;
+    }
+    .card {
+        width: 100%;
+        text-align: center;
+        height: 300px;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
+        transform: scale(1);
+        transition: transform 0.6s;
+        overflow: hidden;
+    }
+    .card:hover {
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+        transform: scale(1.03);
+        cursor: pointer;
+    }
+    .btn {
+        display: inline-block;
+        text-decoration: none;
+        background-image: linear-gradient(120deg, #fda1a1 0%, #fbc2c2 100%);
+        padding: 5px 5px;
+        border-radius: 22px;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        margin-left: 10px;
+        margin-top: 2px;
+    }
+    .btn:hover {
+        display: inline-block;
+        text-decoration: none;
+        background-image: linear-gradient(120deg, #fc8a8a 0%, #ff9898 100%);
+        padding: 10px 20px;
+        border-radius: 22px;
+        color: rgb(61, 23, 23);
+        font-weight: bold;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+}

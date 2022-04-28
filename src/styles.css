@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'miFuente';
+    src: url(assets/fonts/JosefinSans-Light.ttf);
+}
+
+@font-face {
+    font-family: 'miFuente2';
+    src: url(assets/fonts/DelaGothicOne-Regular.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: miFuente;
+}
+
+html {
+    scroll-behavior: smooth;
+}

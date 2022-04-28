@@ -1,0 +1,38 @@
+<div class="container-registro">
+    <div class="row">
+        <div class="col-6">
+            <div class="m-5">
+                <div class="left">
+                    <h2 class="title">Registro</h2>
+                    <form (ngSubmit)="onSubmit(formTemplate)" #formTemplate="ngForm">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label"><strong>Nombre</strong></label>
+                            <input type="text" [class.is-invalid]="nombre.invalid && nombre.touched" [class.is-valid]="nombre.valid" class="form-control" id="nombre" name="nombre" [(ngModel)]="nuevoUsuario.nombre" required ngModel #nombre="ngModel">
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label"><strong>Telefono</strong></label>
+                            <input type="number" [class.is-invalid]="telefono.invalid && telefono.touched" [class.is-valid]="telefono.valid" class="form-control" id="telefono" name="telefono" [(ngModel)]="nuevoUsuario.telefono" required ngModel #telefono="ngModel">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label"><strong>Correo</strong></label>
+                            <input type="email" [class.is-invalid]="correo.invalid && correo.touched" [class.is-valid]="correo.valid" class="form-control" id="email" name="correo" [(ngModel)]="nuevoUsuario.correo" required ngModel #correo="ngModel" placeholder="nombreusuario@beststartupever.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"><strong>Contraseña</strong></label>
+                            <input type="password" class="form-control" [class.is-invalid]="password.invalid && password.touched" [class.is-valid]="password.valid" id="password" name="password" [(ngModel)]="nuevoUsuario.password" required ngModel #password="ngModel">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn">Registrarse</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="img-registro">
+                <img class="rounded mx-auto d-block img-fluid" src="../../../assets/images/right-img.jpeg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

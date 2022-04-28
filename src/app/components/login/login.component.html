@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-6">
+        <div class="img-login">
+            <img class="rounded mx-auto d-block img-fluid" src="../../../assets/images/right-img.jpeg" alt="">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="m-5">
+            <div class="left">
+                <h2 class="title">Login</h2>
+                <div class="text-center" *ngIf="isLogged; else loggedOut">
+                    <h2>Se ha ingresado correctamente!</h2>
+                </div>
+                <ng-template #loggedOut>
+                    <form (ngSubmit)="onLogin()" #formTemplate="ngForm">
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo</label>
+                            <input type="email" class="form-control" id="email" name="correo" [(ngModel)]="loginUsuario.correo" required>
+                        </div>
+                        <div class=" mb-3 ">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="loginUsuario.password" required>
+                        </div>
+                        <div class="d-grid gap-2 ">
+                            <button type="submit" class="btn">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                    <div class="contrasena">
+                        <p class="contrasenaP">¿Has olvidado tu contraseña?</p>
+                        <button class="btn" (click)="olvideContrasena()">olvide mi contraseña</button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
