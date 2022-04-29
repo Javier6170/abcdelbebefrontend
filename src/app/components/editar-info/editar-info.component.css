@@ -31,3 +31,10 @@
     margin-left: 10px;
     margin-top: 10px;
 }
+
+.imgUser {
+    width: 300px;
+    height: 200px;
+    border-radius: 200px;
+    margin-top: 10px;
+}

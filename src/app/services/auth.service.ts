@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
+import { ChangeImagenDTO } from '../model/change-imagen-dto';
 import { LoginUsuario } from '../model/login-usuario';
 import { NuevoUsuario } from '../model/nuevo-usuario';
 
@@ -29,8 +30,8 @@ export class AuthService {
      return this.httpClient.get<any>(this.authURL + "user/" + correo);
    }
 
-   public editImageUser(correo: string, nombre_imagen: string): Observable<any>{
-    return this.httpClient.post<any>(this.authURL + "editarImagen/" + correo, nombre_imagen);
+   public editImageUser(ChangeImagenDTO: ChangeImagenDTO): Observable<any>{
+    return this.httpClient.post<any>(this.authURL + "editarImagen/" + ChangeImagenDTO.correo, ChangeImagenDTO);
   }
 
 }

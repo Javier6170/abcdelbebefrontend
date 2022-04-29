@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-7 mt-3">
-            <form action="">
+            <form action="" *ngIf="existsImage == false;">
                 <div class="image-form mb-3">
                     <div *ngIf="isImagenSubida == false">
                         <label for="firstImg" class="form-label me-3"><strong>Imagen</strong></label>
@@ -22,6 +22,9 @@
                     <div class="img-preview" id="img-preview"></div>
                 </div>
             </form>
+            <div class="image" *ngIf="existsImage == true">
+                <img class="imgUser" [src]="usuario.retreieve_image">
+            </div>
         </div>
     </div>
 </div>x

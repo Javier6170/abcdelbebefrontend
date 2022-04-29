@@ -5,4 +5,5 @@ export class Usuario {
     correo:string;
     password:string
     nombre_imagen: string;
+    retreieve_image: any;
 }
