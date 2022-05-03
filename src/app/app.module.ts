@@ -20,6 +20,7 @@ import { interceptorProvider } from './services/interceptors/prod-interceptor.se
 import { OlvideContrasenaComponent } from './components/olvide-contrasena/olvide-contrasena.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { EditarInfoComponent } from './components/editar-info/editar-info.component';
+import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EditarInfoComponent } from './components/editar-info/editar-info.compon
     FooterAdminComponent,
     OlvideContrasenaComponent,
     ChangePasswordComponent,
-    EditarInfoComponent
+    EditarInfoComponent,
+    DetalleProductoComponent
   ],
   imports: [
     BrowserModule,

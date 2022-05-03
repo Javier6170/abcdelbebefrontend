@@ -34,23 +34,17 @@ export class EditarInfoComponent implements OnInit {
         this.usuario.nombre = res.nombre;
         this.usuario.telefono = res.telefono;
         this.usuario.nombre_imagen = res.nombre_imagen;
-        this.usuario = this.agregarImagenes();
+        this.usuario = this.agregarImagenes(); 
+        if (this.usuario.nombre_imagen == null) {
+          this.existsImage = true;
+        }
+        else{
+          this.existsImage = false;
+        }
       })
 
-      if (this.usuario.nombre_imagen == null || this.usuario.nombre_imagen == "") {
-        this.existsImage = true;
-      }
-      else{
-        this.existsImage = false;
-      }
+     
     }
-
-    
-
-  }
-
-  subirImagen() {
-
   }
 
   //imagen
@@ -104,22 +98,16 @@ export class EditarInfoComponent implements OnInit {
       });
       //@ts-ignore
       this.usuario.nombre_imagen = event.target.files[0].name;
-
       console.log(this.usuario.nombre_imagen);
-
       this.changeImagenDTO.nombre_imagen = this.usuario.nombre_imagen;
       this.changeImagenDTO.correo = this.usuario.correo;
       this.authService.editImageUser(this.changeImagenDTO).subscribe(res=>{
         console.log('Res', res)
+        window.location.reload();
       }, err =>{
         console.log('Er', err.error.mensage)
-      })
-      
-    }
-
-
+      })}
   }
-
   agregarImagenes(){
       this.httpClient.get('http://localhost:8085/api/imagenUsuario/get/' + this.usuario.nombre_imagen)
         .subscribe(
@@ -128,14 +116,13 @@ export class EditarInfoComponent implements OnInit {
             this.base64Data = this.retrieveResonse.picByte;
             this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
             this.usuario.retreieve_image = this.retrievedImage;
-            console.log('Usuario', this.usuario)
           }
         );
       return this.usuario;
   }
 
   getImage() {
-    //Make a call to Sprinf Boot to get the Image Bytes.
+    //Make a call to Spring Boot to get the Image Bytes.
     this.httpClient.get('http://localhost:8085/api/imagenUsuario/get/' + this.usuario.nombre_imagen)
       .subscribe(
         res => {

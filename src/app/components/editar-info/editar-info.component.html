@@ -13,18 +13,24 @@
             </div>
         </div>
         <div class="col-7 mt-3">
-            <form action="" *ngIf="existsImage == false;">
+            <form *ngIf="existsImage; else exitsImageT">
                 <div class="image-form mb-3">
-                    <div *ngIf="isImagenSubida == false">
+                    <div>
                         <label for="firstImg" class="form-label me-3"><strong>Imagen</strong></label>
                         <input type="file" [class.is-valid]="imagen.valid" class="form-control" id="imagen" accept="image/*" name="imagen" id="imagen" required ngModel #imagen="ngModel" (change)="onFileChanged($event)">
                     </div>
                     <div class="img-preview" id="img-preview"></div>
                 </div>
             </form>
-            <div class="image" *ngIf="existsImage == true">
-                <img class="imgUser" [src]="usuario.retreieve_image">
-            </div>
+            <ng-template #exitsImageT>
+                <div class="image">
+                    <img class="imgUser" [src]="usuario.retreieve_image">
+                    <label class="labelEditImage" for="editImage"></label>
+                    <input type="file" id="editImage" hidden>
+                </div>
+
+
+            </ng-template>
         </div>
     </div>
-</div>x
+</div>

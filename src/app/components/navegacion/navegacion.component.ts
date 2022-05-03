@@ -42,7 +42,7 @@ export class NavegacionComponent implements OnInit {
       //@ts-ignore
       document.getElementById("navbar")?.style.paddingBottom = "100px";
       //@ts-ignore
-      document.getElementById("navbar")?.style.marginBottom = "190px";
+      document.getElementById("navbar")?.style.marginBottom = "200px";
       this.isNotToggle = false;
     }
   }

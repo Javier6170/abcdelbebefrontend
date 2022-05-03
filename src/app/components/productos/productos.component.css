@@ -7,7 +7,7 @@
 
 .card {
     width: 30%;
-    height: 450px;
+    height: 500px;
     box-shadow: 0 0 4px 0 rgba(93, 204, 255, 0.5);
     transform: scale(1);
     transition: transform 0.6s;
@@ -143,10 +143,10 @@ header {
     margin-top: 10px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .card img {
         margin: auto;
-        width: 50%;
+        width: 40%;
     }
     .card i {
         margin: 30px 0 10px 0;
@@ -164,7 +164,7 @@ header {
     .card {
         width: 100%;
         text-align: center;
-        height: 300px;
+        height: 450px;
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
         transform: scale(1);
         transition: transform 0.6s;
