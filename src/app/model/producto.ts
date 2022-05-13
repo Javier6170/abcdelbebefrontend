@@ -4,7 +4,7 @@ export class Producto {
     descripcion:number;
     precio:number;
     cantidad:number;
-    id_Categoria:number;
+    nombreCategoria:string;
     nombre_imagen: string;
     retreieve_image: any;
 }

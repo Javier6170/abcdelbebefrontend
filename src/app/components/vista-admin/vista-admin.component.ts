@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Categoria } from 'src/app/model/categoria';
 import { Producto } from 'src/app/model/producto';
+import { CategoriaService } from 'src/app/services/categoria.service';
 import { ProductoServiceService } from 'src/app/services/producto-service.service';
 import { TokenService } from 'src/app/services/token.service';
 import Swal from 'sweetalert2';
@@ -18,17 +20,26 @@ export class VistaAdminComponent implements OnInit {
   isAnadirProducto = false;
   isAnadirCategoria = false;
   isListaProductos = false;
+  isListaCategorias = false;
   isProductos = false;
   listProductos: Producto[];
   imagenPrevia: any;
   isImagenSubida = false;
   producto: Producto = new Producto();
+  categoria: Categoria = new Categoria();
   nombreImagen: string
 
-  constructor(private tokenService: TokenService, 
+  nombreCategoria: string;
+
+  listCategorias: Categoria[];
+  seleccionado: string;
+
+  constructor(private tokenService: TokenService,
     private router: Router,
-     private productoService: ProductoServiceService,
-     private httpClient: HttpClient) { }
+    private productoService: ProductoServiceService,
+    private categoriaService: CategoriaService,
+    private activatedRoute: ActivatedRoute,
+    private httpClient: HttpClient) { }
 
   //imagen
 
@@ -39,7 +50,7 @@ export class VistaAdminComponent implements OnInit {
   message: string;
   imageName: any;
   //Gets called when the user selects an image
-  
+
   public onFileChanged(event: Event) {
     //@ts-ignore
     console.log(event.target.files[0])
@@ -57,12 +68,22 @@ export class VistaAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     if (this.tokenService.getAuthorities().length < 2) {
       this.router.navigate(['acceso_denegado'])
     }
     this.productoService.listaProductos().subscribe(res => {
       this.listProductos = res;
     });
+    this.categoriaService.listaCategorias().subscribe(resCat => {
+      this.listCategorias = resCat;
+    })
+  }
+
+  buscarCategoria() {
+    this.categoriaService.categoriaByNombre(this.nombreCategoria).subscribe(res => {
+      console.log(res)
+    })
   }
 
   anadirProducto() {
@@ -78,6 +99,7 @@ export class VistaAdminComponent implements OnInit {
     this.isProductos = true;
     this.isAnadirProducto = false;
     this.isAnadirCategoria = false;
+    this.isListaCategorias = false;
     this.router.navigate(['vista_admin']);
     window.location.reload();
   }
@@ -85,9 +107,20 @@ export class VistaAdminComponent implements OnInit {
   listaProductos() {
     this.isInicio = false
     this.isListaProductos = true
+    this.isAnadirProducto = false
+    this.isAnadirCategoria = false;
+    this.isListaCategorias = false;
   }
 
-  subirImagen(){
+  listCategories() {
+    this.isInicio = false
+    this.isListaProductos = false;
+    this.isAnadirProducto = false
+    this.isAnadirCategoria = false;
+    this.isListaCategorias = true;
+  }
+
+  subirImagen() {
     console.log(this.selectedFile);
     //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
@@ -104,20 +137,15 @@ export class VistaAdminComponent implements OnInit {
         }
       }
       );
-      this.isImagenSubida = true;
-      Swal.fire({
-        icon: 'success',
-        title: 'Muy bien...',
-        text: '¡Imagen cargada ahora completa la informacion!'
-      });
-      
+    this.isImagenSubida = true;
+    Swal.fire({
+      icon: 'success',
+      title: 'Muy bien...',
+      text: '¡Imagen cargada ahora completa la informacion!'
+    });
+
   }
 
-  productoNuevo() {
-    this.productoService.productoNuevo(this.producto).subscribe(res => {
-      console.log('Res', res)
-    });
-  }
 
   onRegistroProduct(formTemplate: NgForm) {
     if (formTemplate.invalid) {
@@ -131,18 +159,77 @@ export class VistaAdminComponent implements OnInit {
       })
       return
     }
-    this.productoNuevo();
+
+    if (this.seleccionado != null) {
+      this.producto.nombreCategoria = this.seleccionado;
+      this.productoService.productoNuevo(this.producto).subscribe(res => {
+        console.log('Res', res)
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Muy bien...',
+        text: '¡Producto Registrado!'
+
+      });
+      this.router.navigate(['vista_admin']);
+      window.location.reload();
+    }
+    else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debes escoger una categoria!'
+
+      })
+    }
+  }
+
+
+
+  onRegistrarCategoria(formTemplate: NgForm) {
+    if (formTemplate.invalid) {
+      Object.values(formTemplate.controls).forEach(control => {
+        control.markAsTouched();
+      })
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debes llenar todos los campos!'
+      })
+      return
+    }
+    this.categoriaService.categoriaNueva(this.categoria).subscribe(res => {
+      console.log('Cat res', res)
+    })
     this.router.navigate(['vista_admin']);
     window.location.reload();
     Swal.fire({
       icon: 'success',
       title: 'Muy bien...',
-      text: '¡Producto Registrado!'
+      text: '¡Categoria Registrada!'
     });
+
   }
 
-  eliminarProducto() {
-
+  borrar(id: number) {
+    this.productoService.delete(id).subscribe(
+      data => {
+        this.router.navigate(['vista_admin']);
+        window.location.reload();
+        Swal.fire({
+          icon: 'success',
+          title: 'Muy bien...',
+          text: '¡producto borrado!'
+        });
+      },
+      err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text:  err.error.mensaje
+        })
+      }
+    );
   }
 
 

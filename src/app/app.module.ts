@@ -21,6 +21,7 @@ import { OlvideContrasenaComponent } from './components/olvide-contrasena/olvide
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { EditarInfoComponent } from './components/editar-info/editar-info.component';
 import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
+import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DetalleProductoComponent } from './components/detalle-producto/detalle-
     OlvideContrasenaComponent,
     ChangePasswordComponent,
     EditarInfoComponent,
-    DetalleProductoComponent
+    DetalleProductoComponent,
+    EditarProductoComponent
   ],
   imports: [
     BrowserModule,
