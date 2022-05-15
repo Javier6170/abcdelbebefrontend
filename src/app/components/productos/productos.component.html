@@ -11,10 +11,13 @@
         <article class="card" *ngFor="let producto of listProductos">
             <img [src]="producto.retreieve_image">
             <h3>{{producto.nombre}}</h3>
-            <p>{{producto.descripcion}}</p>
-            <p>Precio: <strong>${{producto.precio}}</strong></p>
-            <a href="#"> <i class="fas fa-shopping-cart"></i>Comprar</a>
+            <div class="descripcion text-center">
+                <p>{{producto.descripcion}}</p>
+            </div>
+            <p>Precio: <strong>{{producto.precio | currency}}</strong></p>
+            <a routerLink="/detailsProduct/{{producto.id}}"> <i class="fas fa-shopping-cart"></i>Detalles...</a>
         </article>
     </div>
+
 </div>
 <app-footer></app-footer>

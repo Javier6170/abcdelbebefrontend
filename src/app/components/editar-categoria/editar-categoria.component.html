@@ -1,0 +1,21 @@
+<h1 class="card-title text-center"><i class="fas fa-pencil-alt"></i> Editar Categoria</h1>
+<div class="container" *ngIf="categoria">
+    <div class="row mt-5">
+        <div class="card">
+            <div class="card-body">
+                <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+                    <div class="form-group">
+                        <label for="nombreCategoria"><strong>Nombre Categoria:</strong></label>
+                        <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" [(ngModel)]="categoria.nombreCategoria" required>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn" [disabled]="!f.valid">
+                            <i class="fas fa-pencil-alt"></i> Actualizar</button>
+                        <button class="btn" (click)="volver();">volver</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,43 +1,6 @@
-.separacion {
-    height: 250px;
-}
-
-.mat-stepper-horizontal {
-    margin-top: 8px;
-}
-
-.mat-form-field {
-    margin-top: 16px;
-}
-
-.sidebar {
-    width: 100%;
-}
-
-.bg-pink {
-    background-color: rgb(92, 171, 216);
-}
-
-.nav-link:hover {
-    background-color: rgb(42, 122, 116);
-    color: #fbc2c2;
-}
-
-.d-flex {
-    display: inline-block;
-}
-
-.title {
-    color: #cc8686;
+.buttons {
+    align-items: center;
     text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-hr {
-    color: #0e0909;
-    margin: 5px;
-    padding: 2px;
 }
 
 .btn {
@@ -62,14 +25,4 @@ hr {
     font-weight: bold;
     margin-left: 10px;
     margin-top: 10px;
-}
-
-li {
-    list-style: none;
-}
-
-@media (max-width: 768px) {
-    .separacion {
-        height: 250px;
-    }
 }

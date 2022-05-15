@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-6 text-center">
+        <img [src]="producto.retreieve_image" class="imagen">
+    </div>
+    <div class="col-6 text-center">
+        <div class="card me-3">
+            <h1>{{producto.nombre}}</h1>
+            <h4><strong>Descripcion: </strong>{{producto.descripcion}}</h4>
+            <h4><strong>Cantidad Disponible: </strong>{{producto.cantidad}}</h4>
+            <p>Sin depósito de derechos de importación y envío <strong>GRATIS</strong> a todo Armenia, Quindio</p>
+            <h4 class="text-danger"> {{producto.precio | currency}}</h4>
+            <div class="card me-5 ms-5">
+                <div class="card-title mt-2">
+                    <h5><i class="fa-solid fa-lock"></i> Transaccion segura </h5>
+                    <p>Enviado por: <strong>ABC del bebe</strong></p>
+                    <p>Empaque: <strong>El prorducto llega en perfecto estado</strong></p>
+                    <p><strong>El pago se hara al momento de la llegada del producto</strong></p>
+                </div>
+            </div>
+            <button class="btn me-3 ms-3 mb-2" data-bs-toggle="modal" data-bs-target="#modalComprar">Comprar Ahora</button>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalComprar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Completar compra</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label"><strong>Correo electronico: </strong></label>
+                        <input type="email" class="form-control" id="email" name="email">
+                        <label for="direccion" class="form-label"><strong>Direccion: </strong></label>
+                        <input type="text" class="form-control" id="direccion" name="direccion">
+                        <label for="telefono" class="form-label"><strong>Telefono: </strong></label>
+                        <input type="text" class="form-control" id="telefono" name="direccion">
+                    </div>
+                    <div class="button">
+                        <button type="submit" class="btn">Completar compra</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p>Se enviara un correo electronico cuando se haya completado tu compra...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

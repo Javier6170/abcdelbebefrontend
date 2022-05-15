@@ -22,6 +22,12 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { EditarInfoComponent } from './components/editar-info/editar-info.component';
 import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
+import { IngresosMensualesComponent } from './components/ingresos-mensuales/ingresos-mensuales.component';
+import { NgChartsModule } from 'ng2-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EstadisticasVentasComponent } from './components/estadisticas-ventas/estadisticas-ventas.component';
+import { EditarCategoriaComponent } from './components/editar-categoria/editar-categoria.component';
+import { DetailsProductComponent } from './components/details-product/details-product.component';
 
 @NgModule({
   declarations: [
@@ -41,13 +47,19 @@ import { EditarProductoComponent } from './components/editar-producto/editar-pro
     ChangePasswordComponent,
     EditarInfoComponent,
     DetalleProductoComponent,
-    EditarProductoComponent
+    EditarProductoComponent,
+    IngresosMensualesComponent,
+    EstadisticasVentasComponent,
+    EditarCategoriaComponent,
+    DetailsProductComponent
   ],
   imports: [
     BrowserModule,
     APP_ROUTING,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

@@ -23,4 +23,16 @@ export class CategoriaService {
    public categoriaByNombre(nombreCategoria: string): Observable<any>{
      return this.httpClient.post<any>(this.URL + "/categoriaByNombre", nombreCategoria);
    }
+
+   public update(id: number, categoria: Categoria): Observable<any> {
+    return this.httpClient.put<any>(this.URL + `/update/${id}`, categoria);
+  }
+
+   public detail(id: number): Observable<Categoria> {
+    return this.httpClient.get<Categoria>(this.URL + `/detail/${id}`);
+  }
+
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(this.URL + `/delete/${id}`);
+  }
 }

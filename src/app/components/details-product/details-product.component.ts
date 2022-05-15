@@ -1,61 +1,57 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/model/producto';
 import { ProductoServiceService } from 'src/app/services/producto-service.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
-  selector: 'app-productos',
-  templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.css']
+  selector: 'app-details-product',
+  templateUrl: './details-product.component.html',
+  styleUrls: ['./details-product.component.css']
 })
-export class ProductosComponent implements OnInit {
+export class DetailsProductComponent implements OnInit {
 
-  previsualizacion: string;
-  listProductos: Producto[];
+  producto: Producto;
+
   files: any = []
   retrievedImage: any;
   base64Data: any;
   retrieveResonse: any;
-  nombreImagen: string
-  producto: Producto;
+  nombreImagen: string;
+
+  cantidadProductos: any[] = []
 
 
-
-  constructor(private sanitiezer: DomSanitizer
-    , private tokenService: TokenService
-    , private router: Router,
-    private productoService: ProductoServiceService,
+  constructor(private productoService: ProductoServiceService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private tokenService: TokenService,
     private httpClient: HttpClient) { }
 
   ngOnInit(): void {
-    this.productoService.listaProductos().subscribe(res => {
-      this.listProductos = this.agregarImagenes(res);
-      console.log(this.listProductos)
-    });
-   
+    //@ts-ignore
+    const id = this.activatedRoute.snapshot.params.id;
+    console.log(id)
+    this.productoService.detail(id).subscribe(
+      res => {
+        this.producto = res;
+        this.agregarImagenes()
+      }
+    )
+    
   }
 
-  onChange(event: Event) {
-    console.log(event);
-  }
-
-  agregarImagenes(productos: Producto[]){
-    let listProducts: Producto[] = productos;
-    for (let producto of listProducts) {
-      this.httpClient.get('http://localhost:8085/api/imagen/get/' + producto.nombre_imagen)
+  agregarImagenes(){
+      this.httpClient.get('http://localhost:8085/api/imagen/get/' + this.producto.nombre_imagen)
         .subscribe(
           res => {
             this.retrieveResonse = res;
             this.base64Data = this.retrieveResonse.picByte;
             this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-            producto.retreieve_image = this.retrievedImage;
+            this.producto.retreieve_image = this.retrievedImage;
           }
         );
-    }
-    return listProducts;
   }
 
   getImage(nombreImagen: string) {

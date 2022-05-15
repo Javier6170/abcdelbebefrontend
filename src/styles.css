@@ -20,4 +20,25 @@ body {
 
 html {
     scroll-behavior: smooth;
+    font-family: miFuente;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: miFuente;
+}
+
+body {
+    margin: 0;
+    font-family: miFuente;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: miFuente;
 }

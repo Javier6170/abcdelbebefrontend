@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="font-family: miFuente;">
     <div class="col-sm-auto bg-light sticky-top">
         <div class="d-flex flex-column p-2 flex-shrink-0 text-white bg-pink" style="width: 200px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -8,18 +8,18 @@
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     <button (click)="volver();" class="nav-link text-white" #inicio id="inicio">
-                        <i class="fa-solid fa-house"></i> Inicio
-                    </button>
+                            <i class="fa-solid fa-house"></i> Inicio
+                        </button>
                 </li>
                 <li>
                     <button (click)="listaProductos();" class="nav-link text-white" #productos id="productos">
-                        <i class="fa-solid fa-chart-line"></i> Productos
-                    </button>
+                            <i class="fa-solid fa-chart-line"></i> Productos
+                        </button>
                 </li>
                 <li>
                     <button href="#" (click)="listCategories();" class="nav-link text-white" #cliente>
-                        <i class="fa-solid fa-comments-dollar"></i> Categorias
-                    </button>
+                            <i class="fa-solid fa-comments-dollar"></i> Categorias
+                        </button>
                 </li>
             </ul>
             <div class="separacion"></div>
@@ -40,8 +40,8 @@
                         <ul>
                             <li><button class="btn" (click)="anadirProducto();"><i class="fa-solid fa-plus"></i> Añadir
                                     Producto</button></li>
-                            <li><button class="btn"><i class="fa-solid fa-chart-line"></i> Estadisticas
-                                    producto</button></li>
+                            <li><button class="btn" (click)="estadisticasVentas()"><i class="fa-solid fa-chart-line"></i> Estadisticas
+                                    de ventas</button></li>
                         </ul>
                     </div>
                     <div class="col-6">
@@ -57,7 +57,7 @@
             </div>
             <div class="text-center m-4">
                 <div class="row">
-                    <div class="col-4"><button class="btn"><i class="fa-solid fa-building-user"></i> Ingresos
+                    <div class="col-4"><button class="btn" (click)="ingresosMensuales();"><i class="fa-solid fa-building-user"></i> Ingresos
                             Mensuales</button></div>
                     <div class="col-4"><button class="btn"><i class="fa-solid fa-house-chimney-medical"></i> Egresos
                             Mensuales</button></div>
@@ -81,6 +81,12 @@
                         <button type="button" class="btn" (click)="subirImagen();">Cargar</button>
                         <div class="mensaje">
                             {{message}}
+                        </div>
+                        <br>
+                        <div class="mensaje-com">
+                            <p>Antes de cargar la imagen desbes estar segur@ de que vas a completar la información: </p>
+                            <p>1. Asegurate de tener categorias de productos <button class="btn" (click)="listCategories();">ir</button></p>
+                            <p>2. El nombre de la imagen debe ser unico</p>
                         </div>
                     </div>
                 </div>
@@ -172,14 +178,16 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let categoria of listCategorias">
                         <td>{{categoria.id}}</td>
                         <td>{{categoria.nombreCategoria}}</td>
-                        <td><button class="btn">Editar</button></td>
-                        <td><button class="btn">Eliminar</button></td>
+                        <td><button class="btn" routerLink="/editarCategoria/{{categoria.id}}">Editar</button></td>
+                        <td><button class="btn" (click)="borrarCategoria(categoria.id)">Eliminar</button></td>
                     </tr>
                 </tbody>
             </table>

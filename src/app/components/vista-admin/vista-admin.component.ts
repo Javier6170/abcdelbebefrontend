@@ -201,26 +201,25 @@ export class VistaAdminComponent implements OnInit {
     this.categoriaService.categoriaNueva(this.categoria).subscribe(res => {
       console.log('Cat res', res)
     })
-    this.router.navigate(['vista_admin']);
-    window.location.reload();
     Swal.fire({
       icon: 'success',
       title: 'Muy bien...',
       text: '¡Categoria Registrada!'
     });
-
+    this.router.navigate(['vista_admin']);
+    window.location.reload();
   }
 
   borrar(id: number) {
     this.productoService.delete(id).subscribe(
       data => {
-        this.router.navigate(['vista_admin']);
-        window.location.reload();
         Swal.fire({
           icon: 'success',
           title: 'Muy bien...',
           text: '¡producto borrado!'
         });
+        this.router.navigate(['vista_admin']);
+        window.location.reload();
       },
       err => {
         Swal.fire({
@@ -232,5 +231,32 @@ export class VistaAdminComponent implements OnInit {
     );
   }
 
+  borrarCategoria(id: number){
+    this.categoriaService.delete(id).subscribe(
+      data => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Muy bien...',
+          text: '¡categoria borrada!'
+        });
+        this.router.navigate(['vista_admin']);
+        window.location.reload();
+      },
+      err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text:  err.error.mensaje
+        })
+      }
+    );
+  }
 
+  ingresosMensuales(){
+    this.router.navigate(['ingresosMensuales'])
+  }
+
+  estadisticasVentas(){
+    this.router.navigate(['estadisticasVentas'])
+  }
 }

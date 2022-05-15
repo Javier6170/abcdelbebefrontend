@@ -69,4 +69,7 @@ export class EditarProductoComponent implements OnInit {
     )
   }
 
+  volver(){
+    this.router.navigate(['vista_admin'])
+  }
 }
