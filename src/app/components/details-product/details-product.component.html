@@ -30,21 +30,28 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="email" class="form-label"><strong>Correo electronico: </strong></label>
-                        <input type="email" class="form-control" id="email" name="email">
-                        <label for="direccion" class="form-label"><strong>Direccion: </strong></label>
-                        <input type="text" class="form-control" id="direccion" name="direccion">
-                        <label for="telefono" class="form-label"><strong>Telefono: </strong></label>
-                        <input type="text" class="form-control" id="telefono" name="direccion">
+                <div class="formularioCompra" *ngIf="isLogin == true">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label"><strong>Correo electronico: </strong></label>
+                            <input type="email" class="form-control" id="email" name="email">
+                            <label for="direccion" class="form-label"><strong>Direccion: </strong></label>
+                            <input type="text" class="form-control" id="direccion" name="direccion">
+                            <label for="telefono" class="form-label"><strong>Telefono: </strong></label>
+                            <input type="text" class="form-control" id="telefono" name="direccion">
+                        </div>
+                        <div class="button">
+                            <button type="submit" class="btn">Completar compra</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="iniciarSeisionCompra" *ngIf="isLogin == false">
+                    <div class="m-5">
+                        <h2>¡Debes iniciar sesion para poder completar la compra!</h2>
                     </div>
-                    <div class="button">
-                        <button type="submit" class="btn">Completar compra</button>
-                    </div>
-                </form>
+                </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" *ngIf="isLogin == true">
                 <p>Se enviara un correo electronico cuando se haya completado tu compra...</p>
             </div>
         </div>

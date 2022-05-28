@@ -20,6 +20,7 @@ export class DetailsProductComponent implements OnInit {
   retrieveResonse: any;
   nombreImagen: string;
 
+  isLogin = false
   cantidadProductos: any[] = []
 
 
@@ -30,6 +31,9 @@ export class DetailsProductComponent implements OnInit {
     private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    if (this.tokenService.getAuthorities().length > 1) {
+      this.isLogin = true
+    }
     //@ts-ignore
     const id = this.activatedRoute.snapshot.params.id;
     console.log(id)
