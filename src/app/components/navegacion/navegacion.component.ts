@@ -23,7 +23,6 @@ export class NavegacionComponent implements OnInit {
       this.isAdminLogged = true
     }
 
-    console.log(document.getElementById("togSide")?.ariaExpanded)
     let bool = document.getElementById("togSide")?.ariaExpanded
   }
 

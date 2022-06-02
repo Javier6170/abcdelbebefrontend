@@ -4,9 +4,11 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categoria } from 'src/app/model/categoria';
 import { Producto } from 'src/app/model/producto';
+import { Venta } from 'src/app/model/venta';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { ProductoServiceService } from 'src/app/services/producto-service.service';
 import { TokenService } from 'src/app/services/token.service';
+import { VentaServiceService } from 'src/app/services/venta-service.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,6 +23,7 @@ export class VistaAdminComponent implements OnInit {
   isAnadirCategoria = false;
   isListaProductos = false;
   isListaCategorias = false;
+  isListaVentas = false;
   isProductos = false;
   listProductos: Producto[];
   imagenPrevia: any;
@@ -32,6 +35,9 @@ export class VistaAdminComponent implements OnInit {
   nombreCategoria: string;
 
   listCategorias: Categoria[];
+
+  listaVentas: Venta[];
+
   seleccionado: string;
 
   constructor(private tokenService: TokenService,
@@ -39,7 +45,7 @@ export class VistaAdminComponent implements OnInit {
     private productoService: ProductoServiceService,
     private categoriaService: CategoriaService,
     private activatedRoute: ActivatedRoute,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient, private ventaService:VentaServiceService) { }
 
   //imagen
 
@@ -77,7 +83,10 @@ export class VistaAdminComponent implements OnInit {
     });
     this.categoriaService.listaCategorias().subscribe(resCat => {
       this.listCategorias = resCat;
-    })
+    });
+    this.ventaService.listaVentas().subscribe(res => {
+      this.listaVentas = res;
+    });
   }
 
   buscarCategoria() {
@@ -100,6 +109,7 @@ export class VistaAdminComponent implements OnInit {
     this.isAnadirProducto = false;
     this.isAnadirCategoria = false;
     this.isListaCategorias = false;
+    this.isListaVentas = false;
     this.router.navigate(['vista_admin']);
     window.location.reload();
   }
@@ -110,6 +120,7 @@ export class VistaAdminComponent implements OnInit {
     this.isAnadirProducto = false
     this.isAnadirCategoria = false;
     this.isListaCategorias = false;
+    this.isListaVentas = false;
   }
 
   listCategories() {
@@ -118,8 +129,17 @@ export class VistaAdminComponent implements OnInit {
     this.isAnadirProducto = false
     this.isAnadirCategoria = false;
     this.isListaCategorias = true;
+    this.isListaVentas = false;
   }
 
+  listVentas() {
+    this.isInicio = false
+    this.isListaProductos = false;
+    this.isAnadirProducto = false
+    this.isAnadirCategoria = false;
+    this.isListaCategorias = false;
+    this.isListaVentas = true;
+  }
   subirImagen() {
     console.log(this.selectedFile);
     //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
@@ -238,6 +258,27 @@ export class VistaAdminComponent implements OnInit {
           icon: 'success',
           title: 'Muy bien...',
           text: '¡categoria borrada!'
+        });
+        this.router.navigate(['vista_admin']);
+        window.location.reload();
+      },
+      err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text:  err.error.mensaje
+        })
+      }
+    );
+  }
+
+  borrarVenta(id: number){
+    this.ventaService.delete(id).subscribe(
+      data => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Muy bien...',
+          text: 'venta borrada!'
         });
         this.router.navigate(['vista_admin']);
         window.location.reload();

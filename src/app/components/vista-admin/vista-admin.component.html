@@ -21,6 +21,11 @@
                             <i class="fa-solid fa-comments-dollar"></i> Categorias
                         </button>
                 </li>
+                <li>
+                    <button href="#" (click)="listVentas();" class="nav-link text-white" #cliente>
+                        <i class="fa-solid fa-file-zipper"></i> Ventas
+                        </button>
+                </li>
             </ul>
             <div class="separacion"></div>
             <hr>
@@ -34,36 +39,29 @@
             <div class="m-5">
             </div>
             <h1 class="text-center title">- Inicio -</h1>
+            <hr>
             <div class="text-center mt-4">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <ul>
                             <li><button class="btn" (click)="anadirProducto();"><i class="fa-solid fa-plus"></i> Añadir
                                     Producto</button></li>
-                            <li><button class="btn" (click)="estadisticasVentas()"><i class="fa-solid fa-chart-line"></i> Estadisticas
-                                    de ventas</button></li>
+
                         </ul>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <ul>
                             <li><button class="btn" (click)="anadirCategoria();"><i class="fa-solid fa-plus"></i> Añadir
                                     Categoria</button></li>
-                            <li><button class="btn"><i class="fa-solid fa-arrow-rotate-left"></i> Categoria Menos
-                                    vendida</button></li>
+
                         </ul>
                     </div>
+                    <div class="col-4">
+                        <li><button class="btn" (click)="estadisticasVentas()"><i class="fa-solid fa-chart-line"></i> Estadisticas
+                            de ventas</button></li>
+                    </div>
                 </div>
-                <hr>
-            </div>
-            <div class="text-center m-4">
-                <div class="row">
-                    <div class="col-4"><button class="btn" (click)="ingresosMensuales();"><i class="fa-solid fa-building-user"></i> Ingresos
-                            Mensuales</button></div>
-                    <div class="col-4"><button class="btn"><i class="fa-solid fa-house-chimney-medical"></i> Egresos
-                            Mensuales</button></div>
-                    <div class="col-4"><button class="btn"><i class="fa-solid fa-person-chalkboard"></i>
-                            Planeacion</button></div>
-                </div>
+
             </div>
         </div>
 
@@ -188,6 +186,33 @@
                         <td>{{categoria.nombreCategoria}}</td>
                         <td><button class="btn" routerLink="/editarCategoria/{{categoria.id}}">Editar</button></td>
                         <td><button class="btn" (click)="borrarCategoria(categoria.id)">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-grid gap-2">
+                <button class="btn" (click)="volver();">Volver</button>
+            </div>
+        </div>
+
+        <div class="container-fluid mt-4" *ngIf="isListaVentas;">
+            <h2 class="title">Lista De Ventas</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Direccion</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let venta of listaVentas">
+                        <td>{{venta.id}}</td>
+                        <td>{{venta.estado}}</td>
+                        <td>{{venta.id_producto}}</td>
+                        <td>{{venta.direccion}}</td>
+                        <td><button class="btn" (click)="borrarVenta(venta.id)">Eliminar</button></td>
                     </tr>
                 </tbody>
             </table>

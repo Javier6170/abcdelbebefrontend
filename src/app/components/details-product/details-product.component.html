@@ -17,7 +17,14 @@
                     <p><strong>El pago se hara al momento de la llegada del producto</strong></p>
                 </div>
             </div>
-            <button class="btn me-3 ms-3 mb-2" data-bs-toggle="modal" data-bs-target="#modalComprar">Comprar Ahora</button>
+            <div class="button-comprar" *ngIf="cantidadDisponible > 0">
+                <button class="btn me-3 ms-3 mb-2" data-bs-toggle="modal" data-bs-target="#modalComprar">Comprar
+                    Ahora</button>
+            </div>
+            <div class="cantidadproductoCero" *ngIf="cantidadDisponible <= 0">
+                <h2>Disculpa en este momento este producto esta agotado</h2>
+            </div>
+
         </div>
     </div>
 </div>
@@ -31,18 +38,16 @@
             </div>
             <div class="modal-body">
                 <div class="formularioCompra" *ngIf="isLogin == true">
-                    <form>
-                        <div class="mb-3">
-                            <label for="email" class="form-label"><strong>Correo electronico: </strong></label>
-                            <input type="email" class="form-control" id="email" name="email">
-                            <label for="direccion" class="form-label"><strong>Direccion: </strong></label>
-                            <input type="text" class="form-control" id="direccion" name="direccion">
-                            <label for="telefono" class="form-label"><strong>Telefono: </strong></label>
-                            <input type="text" class="form-control" id="telefono" name="direccion">
-                        </div>
-                        <div class="button">
-                            <button type="submit" class="btn">Completar compra</button>
-                        </div>
+                    <form (ngSubmit)="onSubmit(formTemplate)" #formTemplate="ngForm">
+                        <label for="nombre" class="form-label "><strong>Nombre: </strong></label>
+                        <input type="text" class="form-control " id="nombre" name="nombre" [(ngModel)]="usuario.nombre" disabled>
+                        <label for="telefono" class="form-label "><strong>Telefono: </strong></label>
+                        <input type="text" class="form-control " id="telefono" name="telefono" [(ngModel)]="usuario.telefono" disabled>
+                        <label for="correo" class="form-label "><strong>Correo: </strong></label>
+                        <input type="text" class="form-control " id="correo" name="correo" [(ngModel)]="usuario.correo" disabled>
+                        <label for="direccion" class="form-label "><strong>Direccion: </strong></label>
+                        <input type="email" [class.is-invalid]="direccion.invalid && direccion.touched" [class.is-valid]="direccion.valid" class="form-control" id="direccion" name="direccion" [(ngModel)]="direccionVenta" required ngModel #direccion="ngModel">
+                        <button type="submit" class="btn">Completar compra</button>
                     </form>
                 </div>
                 <div class="iniciarSeisionCompra" *ngIf="isLogin == false">

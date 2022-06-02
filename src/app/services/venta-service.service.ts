@@ -8,12 +8,20 @@ import { Venta } from '../model/venta';
 })
 export class VentaServiceService {
 
-  authURL = "http://localhost:8085/api/ventas"
+  URL = "http://localhost:8085/api/ventas"
 
   constructor(private httpClient: HttpClient) { }
 
   generarVenta(venta: Venta): Observable<any>{
-    return this.httpClient.post<any>(this.authURL + "/nuevo", venta);
+    return this.httpClient.post<any>(this.URL + "/nuevo", venta);
   }
+
+  delete(id: number): Observable<any>{
+    return this.httpClient.delete<any>(this.URL + `/delete/${id}`);
+  }
+
+  public listaVentas(): Observable<any>{
+    return this.httpClient.get<any>(this.URL);
+   }
   
 }

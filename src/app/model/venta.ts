@@ -5,6 +5,8 @@ export class Venta {
     id: number;
     estado: string;
     fechaCompra:Date;
-    producto: Producto;
-    usuario: Usuario;
+    id_producto: number;
+    correoUsuario: string;
+    mes: number;
+    direccion: string;
 }
