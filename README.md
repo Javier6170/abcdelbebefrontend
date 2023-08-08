@@ -1,4 +1,3 @@
-# AbcDelBebeFrontend
 ---
 <em> Frontend - ABC del Bebe </em>
 ---
